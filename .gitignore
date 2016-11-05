@@ -1,0 +1,6 @@
+.DS_Store
+build
+dev
+.sass-cache
+.jekyll-metadata
+node_modules

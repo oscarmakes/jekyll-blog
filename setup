@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+npm install
+
+grunt
+
+bundle install
+
+bundle exec jekyll serve

@@ -1,0 +1,38 @@
+---
+layout: default
+---
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<header class="post-header">
+		<h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
+		<p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
+	</header>
+	
+	<div class="post-content" itemprop="articleBody">
+		{{ content }}
+	</div>
+	
+	<footer>
+		
+		<div class="related_content">
+			<h1>Post navigation</h1>
+			<nav>
+				{% if page.next %}
+				<li>
+					<a href="{{ page.next.url }}">
+						<p><strong>Previous Article</strong><br/>{{ page.next.title | escape }}</p>
+					</a>
+				</li>
+				{% endif %}
+				{% if page.previous %}
+				<li>
+					<a href="{{ page.previous.url }}">
+						<p><strong>Next Article</strong><br/>{{ page.previous.title | escape }}</p>
+					</a>
+				</li>
+				{% endif %}
+			</nav>
+		</div>
+		
+		{% if page.tags != empty %}<p>Tagged in: {{ page.tags | join: ", " }}</p>{% endif %}
+	</footer>
+</article>
