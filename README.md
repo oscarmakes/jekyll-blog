@@ -32,7 +32,6 @@ _posts/
     2016-11-05-hello-world.md
 sample-page/
     index.md
-    image-2.jpg
 ```
 
 If this workflow is what you're after, then this starter Jekyll blog I made is for you!
