@@ -9,7 +9,7 @@ This content structure follows a `feature by package` approach than the default 
 The Grunt task runner will essentially convert this workflow from:-
 ```
 _posts/
-    2016-11-05-hello-world/
+    hello-world/
         index.md
         image.jpg
 sample-page/
@@ -24,7 +24,7 @@ Then transforms it into a structure that Jekyll understands.
 assets/
     img/
         posts/
-            2016-11-05-hello-world-image.jpg
+            hello-world-image.jpg
         pages/
             sample-page/
                 image-2.jpg
