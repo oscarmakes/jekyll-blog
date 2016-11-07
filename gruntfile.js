@@ -1,9 +1,12 @@
 module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		clean: ['dev'],
+		clean: {
+			pre: ['dev'],
+			post: ['.posts-cache']
+		},
 		copy: {
-			main: {
+			pre: {
 				files: [
 					{
 						expand: true,
@@ -38,7 +41,7 @@ module.exports = function(grunt) {
 						expand: true,
 						cwd: 'src/content/_posts',
 						src: ['**/*.md'],
-						dest: 'dev/_posts/',
+						dest: '.posts-cache/',
 						filter: 'isFile',
 						rename: function(dest, src) {
 							return dest + src.substring(0, src.indexOf('/')) + '.md';
@@ -60,6 +63,7 @@ module.exports = function(grunt) {
 					process: function(content, srcpath) {
 						
 						var img_regex = /[^`]!\[.*?\]\(([^\/].[^\/]*?)\)/gm,
+							date_regex = /^date:\s*([0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9])/gm,
 							prependSrc = "{{ site.url }}/assets/img/",
 							new_content = "";
 						
@@ -118,6 +122,29 @@ module.exports = function(grunt) {
 					}
 				}
 			},
+			post: {
+				files: [
+					{
+						expand: true,
+						cwd: '.posts-cache/',
+						src: ['**/*.md'],
+						dest: '.posts-cache',
+						filter: 'isFile'
+					}
+				]
+			},
+			options: {
+				noProcess: ['**/*.{png,jpg,svg,pdf,xml,psd}'],
+				process: function(content, srcpath) {
+					
+					var filename = srcpath.slice('.posts-cache/'.length),
+						date_regex = /^date:\s*([0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9])/gm,
+						dateRegexOutput = date_regex.exec(content)[1];
+					
+					destpath = 'dev/_posts/' + dateRegexOutput + '-' + filename;
+					
+				}
+			}
 		},
 		watch: {
 			content: {
@@ -136,6 +163,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	
-	grunt.registerTask('default', ['clean', 'copy']);
+	grunt.registerTask('default', ['clean:pre', 'copy:pre', 'copy:post', 'clean:post']);
 	
 };
