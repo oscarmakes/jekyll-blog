@@ -143,6 +143,8 @@ module.exports = function(grunt) {
 					
 					destpath = 'dev/_posts/' + dateRegexOutput + '-' + filename;
 					
+					grunt.file.copy(srcpath, destpath);
+					
 				}
 			}
 		},
