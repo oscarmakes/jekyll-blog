@@ -24,7 +24,7 @@ Then transforms it into a structure that Jekyll understands.
 assets/
     img/
         posts/
-            hello-world-image.jpg
+            2016-11-05-hello-world-image.jpg
         pages/
             sample-page/
                 image-2.jpg
