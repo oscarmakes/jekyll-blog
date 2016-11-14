@@ -43,10 +43,8 @@ You'll need to install macOS' Command Line Tools (don't worry, this won't actual
 ```
 xcode-select --install
 ```
-Then you'll need to install Node (will also install Node Package Manager).
-```
-curl "https://nodejs.org/dist/latest/node-${VERSION:-$(wget -qO- https://nodejs.org/dist/latest/ | sed -nE 's|.*>node-(.*)\.pkg</a>.*|\1|p')}.pkg" > "$HOME/Downloads/node-latest.pkg" && sudo installer -store -pkg "$HOME/Downloads/node-latest.pkg" -target "/"
-```
+Then you'll need to install Node. Head over to [nodejs.org](http://nodejs.org) and download the latest stable release.
+
 Install Grunt and the CLI companion.
 ```
 sudo npm install -g grunt
